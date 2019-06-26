@@ -15,6 +15,7 @@ namespace OddServices
         }
         public string UserName { get; set; }
        
+        public string ConnectionId { get; set; }
         
 
         public void Update(List<Odds> odds)

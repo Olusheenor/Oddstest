@@ -7,7 +7,7 @@ namespace OddServices
 {
     public class DisplayService : IDisplayService
     {
-        public void ShowOdds(List<Odds> allOdds, string username)
+        public void ShowOdds(List<Odds> allOdds, string username = null)
         {
             //show the user the list of all odds..
 

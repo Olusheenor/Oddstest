@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OddsCore\OddsCore.csproj" />
     <ProjectReference Include="..\OddServices\OddServices.csproj" />
   </ItemGroup>
 

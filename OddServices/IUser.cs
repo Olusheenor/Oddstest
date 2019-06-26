@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OddsCore.Interfaces
+namespace OddServices
 {
-    interface IUser
+    public interface IUser
     {
          string UserName { get; set; }
-         string UserType { get; set; }
+        
     }
 }

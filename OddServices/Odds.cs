@@ -6,9 +6,14 @@ namespace OddsCore
 {
     public class Odds
     {
+        
+       
         public string OddName { get; set; }
         public string OddValue { get; set; }
 
         public bool IsPublished { get; set; }
+
+      
+        
     }
 }

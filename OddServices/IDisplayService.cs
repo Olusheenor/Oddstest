@@ -7,6 +7,6 @@ namespace OddServices
 {
     public interface IDisplayService
     {
-        void ShowOdds(List<Odds> odds, string username);
+        void ShowOdds(List<Odds> odds, string username = "client");
     }
 }

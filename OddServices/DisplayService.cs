@@ -19,7 +19,7 @@ namespace OddServices
 
                 if(username == "admin")
                 {
-                    //Console.WriteLine("Notifying admin of latest published!");
+                    
                     Console.WriteLine($"{counter}. Name : {odd.OddName} | Value : {odd.OddValue} | Published: {(odd.IsPublished ? "Yes" : "No")}");
                 }
                 else

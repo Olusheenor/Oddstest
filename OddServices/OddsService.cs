@@ -1,4 +1,6 @@
-﻿using OddsCore;
+﻿using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
+using OddsCore;
 using System;
 using System.Collections.Generic;
 
@@ -6,29 +8,42 @@ namespace OddServices
 {
     public class OddsService : IOddService
     {
-        private static List<Odds> _listOdds = new List<Odds>();
-        private static HashSet<User> _subScribedUsers = new HashSet<User>();
-        public OddsService()
+        private static List<Odds> _listOdds = new List<Odds>()
         {
-            _listOdds = new List<Odds>()
-             {
-                 new Odds()
+          new Odds()
                 {
                     OddName = "First Odd",
-                    OddValue = "2.1"
+                    OddValue = "2.1",
+                    IsPublished = true
+
                 },
                 new Odds()
                 {
                     OddName = "Second Odd",
-                    OddValue = "3.1"
+                    OddValue = "3.1",
+                    IsPublished = true
                 },
                  new Odds()
                 {
                     OddName = "Third Odd",
                     OddValue = "4.1"
                 }
-             };
+        };
+        private static HashSet<User> _subScribedUsers = new HashSet<User>();
+        public readonly IHubContext<MyHub> _hubContext;
+        public IDisplayService _displayService;
+        public OddsService(IDisplayService display, IHubContext<MyHub> hubContext)
+        {
+            _displayService = display;
+            _hubContext = hubContext;
         }
+        //public OddsService()
+        //{
+        //    _listOdds = new List<Odds>()
+        //     {
+                 
+        //     };
+        //}
         public void Add(Odds input)
         {
             _listOdds.Add(input);
@@ -71,11 +86,12 @@ namespace OddServices
             }
 
             // Real time notify all users of new odds!!
+            _hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
 
-            foreach(var user in _subScribedUsers)
-            {
-                user.Update(_listOdds);
-            }
+            //foreach (var user in _subScribedUsers)
+            //{
+            //    user.Update(_listOdds, _hubContext);
+            //}
         }
     }
 }

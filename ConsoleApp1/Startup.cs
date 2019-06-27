@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR;
-
+using OddServices;
 
 namespace OddsServer
 {
@@ -29,9 +29,14 @@ namespace OddsServer
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseSignalR(route =>
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseCors("CorsPolicy");
+
+            app.UseSignalR(routes =>
             {
-                route.MapHub<ChatHub>("/chathub");
+                routes.MapHub<MyHub>("/notifications");
             });
 
             //app.UseStaticFiles();
@@ -42,9 +47,19 @@ namespace OddsServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+               builder =>
+               {
+                   builder.AllowAnyMethod().AllowAnyHeader()
+                          .WithOrigins("http://localhost:55830")
+                          .AllowCredentials();
+               }));
             services.AddSignalR();
+            services.AddSingleton<IOddService, OddsService>()
+           .AddSingleton<IDisplayService, DisplayService>()
+           .AddSingleton<IUser, User>()
+           
+           .BuildServiceProvider();
         }
 
 

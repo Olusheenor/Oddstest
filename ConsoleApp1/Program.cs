@@ -1,17 +1,11 @@
 ﻿using System;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Owin;
-
 using OddsServer;
-
 using OddServices;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
-using Microsoft.Owin.Hosting;
-using System.IO;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace OddsServer
@@ -21,35 +15,32 @@ namespace OddsServer
         private static IDisposable SignalR;
         static void Main(string[] args)
         {
+
+            BuildWebHost(args).Start();
+
             //setup our DI
             //Usually we can use a registration by convention but for simplicity sake lets just simulate
             var serviceProvider = new ServiceCollection()
-                .AddSingleton<IOddService, OddsService>()
+                
                 .AddSingleton<IDisplayService, DisplayService>()
                 .AddSingleton<IUser, User>()
+                .AddSingleton<IOddService, OddsService>()
+                .AddTransient<MyHub>()
                 .BuildServiceProvider();
 
             Console.WriteLine("Hello there! Welcome to OddestOdds.com");
 
+
             //injecting an instance of odd service earlier set up
-            var _oddService = serviceProvider.GetService<IOddService>();
             var _displayService = serviceProvider.GetService<IDisplayService>();
+            var _oddService = serviceProvider.GetService<IOddService>();
+            //var _oddServicePub = serviceProvider.GetService<I>();
+           
 
-            //string url = "http://127.0.0.1:8088";
-            //SignalR = WebApp.Start(url);
-
-            //var host = new WebHostBuilder()
-
-            //   .UseContentRoot(Directory.GetCurrentDirectory())
-            //   .UseIISIntegration()
-            //   .UseStartup<Startup>()
-            //   .Build();
-
-            //    host.Start();
-
-            BuildWebHost(args).Start();
+            
 
             Console.WriteLine("You are an admin user.. Please manage your odds here");
+
             Console.WriteLine("Loading the list of all Odds...");
             Thread.Sleep(2000);
 
@@ -90,7 +81,7 @@ namespace OddsServer
                         _displayService.ShowOdds(odds, "admin");
                         break;
                     case "pub":
-                         _oddService.Publish();
+                        _oddService.Publish();
                         break;
 
                     default:
@@ -107,20 +98,13 @@ namespace OddsServer
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-        WebHost.CreateDefaultBuilder(args).UseUrls("http://127.0.0.1:8088")
+        WebHost.CreateDefaultBuilder(args).UseUrls("http://localhost:55830")
                .UseStartup<Startup>()
                .Build();
     }
 
-    [HubName("NotificationsHub")]
-    public class MyHub : Hub
-    {
-        public void Send(string name, string message)
-        {
-            
-            Clients.All.Send(message);
-        }
-    }
+    
+
 
   
 }

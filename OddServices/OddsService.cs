@@ -10,40 +10,40 @@ namespace OddServices
     {
         private static List<Odds> _listOdds = new List<Odds>()
         {
-          new Odds()
-                {
-                    OddName = "First Odd",
-                    OddValue = "2.1",
-                    IsPublished = true
-
-                },
-                new Odds()
-                {
-                    OddName = "Second Odd",
-                    OddValue = "3.1",
-                    IsPublished = true
-                },
-                 new Odds()
-                {
-                    OddName = "Third Odd",
-                    OddValue = "4.1"
-                }
+          
         };
         private static HashSet<User> _subScribedUsers = new HashSet<User>();
-        public readonly IHubContext<MyHub> _hubContext;
+        public  IHubContext<MyHub> _hubContext;
         public IDisplayService _displayService;
         public OddsService(IDisplayService display, IHubContext<MyHub> hubContext)
         {
             _displayService = display;
             _hubContext = hubContext;
         }
-        //public OddsService()
-        //{
-        //    _listOdds = new List<Odds>()
-        //     {
-                 
-        //     };
-        //}
+        public OddsService()
+        {
+            _listOdds = new List<Odds>()
+             {
+        new Odds()
+        {
+            OddName = "First Odd",
+                    OddValue = "2.1",
+                    IsPublished = true
+
+                },
+                new Odds()
+        {
+            OddName = "Second Odd",
+                    OddValue = "3.1",
+                    IsPublished = true
+                },
+                 new Odds()
+        {
+            OddName = "Third Odd",
+                    OddValue = "4.1"
+                }
+             };
+        }
         public void Add(Odds input)
         {
             _listOdds.Add(input);
@@ -80,18 +80,26 @@ namespace OddServices
       
         public void Publish()
         {
+
+            _listOdds.ForEach(x =>
+            {
+                x.IsPublished = true;
+            });
+
+
             foreach (var item in _listOdds)
             {
                 item.IsPublished = true;
             }
 
+            foreach( var user in _subScribedUsers)
+            {
+                user.Update(_listOdds);
+            }
             // Real time notify all users of new odds!!
-            _hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
+            //_hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
 
-            //foreach (var user in _subScribedUsers)
-            //{
-            //    user.Update(_listOdds, _hubContext);
-            //}
+            
         }
     }
 }

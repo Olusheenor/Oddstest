@@ -13,7 +13,7 @@ namespace OddsServer
             public void Configuration(IAppBuilder app)
             {
             
-                app.MapHubs();
+                //app.MapHubs();
              }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,6 +39,12 @@ namespace OddsServer
                 routes.MapHub<MyHub>("/notifications");
             });
 
+            app.Use(async (context, next) =>
+            {
+                var hubContext = context.RequestServices
+                                        .GetRequiredService<IHubContext<MyHub>>();
+                
+            });
             //app.UseStaticFiles();
 
             //app.Run(context => context.Response.WriteAsync("hello world"));

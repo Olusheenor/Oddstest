@@ -29,6 +29,23 @@ namespace OddServices
                
             }
 
+            allOdds.ForEach(n =>
+            {
+                counter++;
+
+                if (username == "admin")
+                {
+
+                    Console.WriteLine($"{counter}. Name : {n.OddName} | Value : {n.OddValue} | Published: {(n.IsPublished ? "Yes" : "No")}");
+                }
+                else
+                {
+                    Console.WriteLine($"{counter}. Name : {n.OddName} | Value : {n.OddValue}");
+                }
+
+            });
+          
+
         }
     }
 }

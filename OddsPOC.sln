@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsClient", "OddsClient\OddsClient.csproj", "{B427FABA-702B-4F4E-8FAB-F962DF9AF5D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddServices", "OddServices\OddServices.csproj", "{7CAAC963-A754-4054-AAD5-B668C29A3E42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddServices", "OddServices\OddServices.csproj", "{7CAAC963-A754-4054-AAD5-B668C29A3E42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddsServer", "ConsoleApp1\OddsServer.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsServer", "ConsoleApp1\OddsServer.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddsServerWeb", "OddsServerWeb\OddsServerWeb.csproj", "{F2C864A5-4247-492F-A745-6BF0ABD23A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{64C3E446-A04E-4965-B9F7-CA37AA71BD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64C3E446-A04E-4965-B9F7-CA37AA71BD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64C3E446-A04E-4965-B9F7-CA37AA71BD86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

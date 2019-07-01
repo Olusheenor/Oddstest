@@ -8,6 +8,6 @@ namespace OddServices
 {
     interface INotify
     {
-        void Update(List<Odds> odds, IHubContext<MyHub> hubContext);
+        void Update(List<Odds> odds);
     }
 }

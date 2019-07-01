@@ -6,6 +6,7 @@ using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
+using Microsoft.AspNet.SignalR;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace OddsServer
@@ -16,7 +17,7 @@ namespace OddsServer
         static void Main(string[] args)
         {
 
-            BuildWebHost(args).Start();
+            //BuildWebHost(args).Start();
 
             //setup our DI
             //Usually we can use a registration by convention but for simplicity sake lets just simulate
@@ -25,16 +26,15 @@ namespace OddsServer
                 .AddSingleton<IDisplayService, DisplayService>()
                 .AddSingleton<IUser, User>()
                 .AddSingleton<IOddService, OddsService>()
-                .AddTransient<MyHub>()
                 .BuildServiceProvider();
 
-            Console.WriteLine("Hello there! Welcome to OddestOdds.com");
+            Console.WriteLine("Hello Admin! Welcome to OddestOdds.com Server");
 
 
             //injecting an instance of odd service earlier set up
             var _displayService = serviceProvider.GetService<IDisplayService>();
             var _oddService = serviceProvider.GetService<IOddService>();
-            //var _oddServicePub = serviceProvider.GetService<I>();
+      
            
 
             
@@ -81,7 +81,11 @@ namespace OddsServer
                         _displayService.ShowOdds(odds, "admin");
                         break;
                     case "pub":
-                        _oddService.Publish();
+
+                        var serviceProvder = new ServiceCollection()
+                            .AddScoped<OddsService>().AddSingleton<IOddService, OddsService>().BuildServiceProvider();
+                        var oddService = serviceProvder.GetService<OddsService>();
+                        oddService.Publish();
                         break;
 
                     default:

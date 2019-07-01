@@ -17,34 +17,28 @@ namespace OddsClient
         {
 
             HubConnection connection = new HubConnectionBuilder()
-              .WithUrl("http://localhost:55830/notifications")
+              .WithUrl("http://localhost:52271/notifications")
               .Build();
 
 
             //setup our DI
             //Usually we can use a registration by convention but for simplicity sake lets just simulate
             var serviceProvider = new ServiceCollection()
-                .AddSingleton<IOddService, OddsService>()
                 .AddSingleton<IDisplayService, DisplayService>()
-                .AddSingleton<IUser, User>()
                 .BuildServiceProvider();
 
             Console.WriteLine("Hello there! Welcome to OddestOdds.com");
 
-            //injecting an instance of odd service earlier set up
-             var _oddService = serviceProvider.GetService<IOddService>();
+    
             var _displayService = serviceProvider.GetService<IDisplayService>();
 
 
-           
-           
 
             connection.Closed += async (error) =>
             {
                 await Task.Delay(new Random().Next(0, 5) * 1000);
                 await connection.StartAsync();
             };
-
 
             List<Odds> odds = new List<Odds>();
 
@@ -63,11 +57,10 @@ namespace OddsClient
 
             if(connected)
             {
-                
                 Console.WriteLine("Connected to oddestodds server.......");
 
                 await connection.InvokeAsync("LoadOdds");
-
+                
                 Console.ReadKey(); 
             }
             else

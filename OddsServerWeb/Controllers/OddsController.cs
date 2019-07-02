@@ -32,25 +32,28 @@ namespace OddsServerWeb.Controllers
 
         // GET api/values/5
         [HttpPost]
-        [Route("AddOdds")]
-        public ActionResult<string> Add([FromBody]Odds odd)
+        [Route("AddOdd")]
+        public ActionResult Add([FromBody]Odds odd)
         {
             _oddService.Add(odd);
             return Ok();
 
         }
 
-        // POST api/values
         [HttpPost]
         [Route("RemoveOdd")]
-        public void Post([FromBody] string OddName)
+        public ActionResult Post([FromBody] string OddName)
         {
+            _oddService.Remove(OddName);
+            return Ok();
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+        [HttpPost]
+        [Route("Publish")]
+        public void Publish()
         {
+            _oddService.Publish();
         }
 
         // DELETE api/values/5

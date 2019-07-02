@@ -20,7 +20,8 @@ namespace OddServices
 
         public override async Task OnConnectedAsync()
         {
-            
+         
+            // override onconnected and subscribe the user to updates....
             _oddService.Subscribe(new User() { UserName = "client", ConnectionId = Context.ConnectionId });
              await base.OnConnectedAsync();
         }

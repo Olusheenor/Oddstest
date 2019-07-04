@@ -1,45 +1,33 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+Hi There,
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+Things to note and general assumptions
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+1. Application was built using Visual Studio 2019 on .NET Core 2.2 (Net Core 2.2.5 Hosting Bundle should be installed to run)
+2. Use of Dependency Injection, Unit tests and Observer Design Pattern
+3. Static class was used to simulate database. Will have implemented an ORM e.g Entity Framework/Dapper in a main project.
+4. Code didnt fully follow SOLID procedures due to console application limitations. The Idea of solid principles was however shown.  
 
----
+A brief project description below;
 
-## Edit a file
+## OddsServerWeb
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Hosts the application web service and responsible for client and admin syncronisation.
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+## OddsAdmin
 
----
+Simulation of Admin page on a console app for Add, Edit, Delete,and Publish Methods
 
-## Create a file
+## OddsClient
 
-Next, you’ll add a new file to this repository.
+Simulation of Client/Plunker page for viewing real time odds.
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+## OddsServices
 
----
+Class library for reusable code
 
-## Clone a repository
+## Program Test Instructions
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+1. Open project in Visual Studio 2019.
+2. Set the OddsServerWeb as start up and run on IIS Express. Press **Ctrl + F5**
+3. Run the client and admin console applications to use operations.

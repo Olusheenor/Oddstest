@@ -17,35 +17,15 @@ namespace OddServices
             {
                 counter++;
 
-                if(username == "admin")
+                if (username == "admin")
                 {
-                    
                     Console.WriteLine($"{counter}. Name : {odd.OddName} | Value : {odd.OddValue} | Published: {(odd.IsPublished ? "Yes" : "No")}");
                 }
                 else
                 {
                     Console.WriteLine($"{counter}. Name : {odd.OddName} | Value : {odd.OddValue}");
                 }
-               
             }
-
-            allOdds.ForEach(n =>
-            {
-                counter++;
-
-                if (username == "admin")
-                {
-
-                    Console.WriteLine($"{counter}. Name : {n.OddName} | Value : {n.OddValue} | Published: {(n.IsPublished ? "Yes" : "No")}");
-                }
-                else
-                {
-                    Console.WriteLine($"{counter}. Name : {n.OddName} | Value : {n.OddValue}");
-                }
-
-            });
-          
-
         }
     }
 }

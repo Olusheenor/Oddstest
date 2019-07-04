@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\OddsAdmin.csproj" />
+    <ProjectReference Include="..\OddsAdmin\OddsAdmin.csproj" />
     <ProjectReference Include="..\OddServices\OddServices.csproj" />
   </ItemGroup>
-
 </Project>

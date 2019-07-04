@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsClient", "OddsClient\Od
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddServices", "OddServices\OddServices.csproj", "{7CAAC963-A754-4054-AAD5-B668C29A3E42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsAdmin", "ConsoleApp1\OddsAdmin.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsAdmin", "OddsAdmin\OddsAdmin.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsServerWeb", "OddsServerWeb\OddsServerWeb.csproj", "{F2C864A5-4247-492F-A745-6BF0ABD23A68}"
 EndProject

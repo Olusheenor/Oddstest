@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsClient", "OddsClient\Od
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddServices", "OddServices\OddServices.csproj", "{7CAAC963-A754-4054-AAD5-B668C29A3E42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsServer", "ConsoleApp1\OddsServer.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsAdmin", "ConsoleApp1\OddsAdmin.csproj", "{64C3E446-A04E-4965-B9F7-CA37AA71BD86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddsServerWeb", "OddsServerWeb\OddsServerWeb.csproj", "{F2C864A5-4247-492F-A745-6BF0ABD23A68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OddsServerWeb", "OddsServerWeb\OddsServerWeb.csproj", "{F2C864A5-4247-492F-A745-6BF0ABD23A68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OddsTest", "OddsTest\OddsTest.csproj", "{88E81416-E049-49AC-8D18-53D359DF0A14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C864A5-4247-492F-A745-6BF0ABD23A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E81416-E049-49AC-8D18-53D359DF0A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E81416-E049-49AC-8D18-53D359DF0A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E81416-E049-49AC-8D18-53D359DF0A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E81416-E049-49AC-8D18-53D359DF0A14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,21 +10,8 @@ namespace OddServices
     {
         private static List<Odds> _listOdds = new List<Odds>()
         {
-          
-        };
-        private static HashSet<User> _subScribedUsers = new HashSet<User>();
-        public  IHubContext<MyHub> _hubContext;
-        public IDisplayService _displayService;
-        public OddsService(IDisplayService display, IHubContext<MyHub> hubContext)
-        {
-            _displayService = display;
-            _hubContext = hubContext;
-        }
-        public OddsService()
-        {
-            _listOdds = new List<Odds>()
-             {
-        new Odds()
+
+              new Odds()
         {
             OddName = "First Odd",
                     OddValue = "2.1",
@@ -42,7 +29,18 @@ namespace OddServices
             OddName = "Third Odd",
                     OddValue = "4.1"
                 }
-             };
+        };
+        private static HashSet<User> _subScribedUsers = new HashSet<User>();
+        public  IHubContext<MyHub> _hubContext;
+        public IDisplayService _displayService;
+        public OddsService(IDisplayService display, IHubContext<MyHub> hubContext)
+        {
+            _displayService = display;
+            _hubContext = hubContext;
+        }
+        public OddsService()
+        {
+           
         }
         public void Add(Odds input)
         {
@@ -92,14 +90,19 @@ namespace OddServices
                 item.IsPublished = true;
             }
 
-            foreach( var user in _subScribedUsers)
-            {
-                user.Update(_listOdds);
-            }
-            // Real time notify all users of new odds!!
-            //_hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
+            //default observer pattern
 
-            
+            //foreach( var user in _subScribedUsers)
+            //{
+            //    user.Update(_listOdds);
+            //}
+
+            //Real time notify all users of new odds!!
+
+
+            _hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
+
+
         }
     }
 }

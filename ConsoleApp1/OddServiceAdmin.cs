@@ -3,32 +3,40 @@ using OddServices;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OddsServer
 {
     public class OddServiceAdmin : IOddService
     {
-        private readonly string baseUrl = "http://localhost:52271";
+        private readonly string baseUrl = "http://localhost:52271/api/odds/";
 
         public void Add(Odds input)
         {
 
-            throw new NotImplementedException();
+            string url = baseUrl + "Add";
+            var x =  RestUtility.CallServiceAsync<string>(url, input, "POST").Result;
+
         }
 
         public List<Odds> GetAll()
         {
-            throw new NotImplementedException();
+            string url = baseUrl + "LoadOdds";
+            var x = RestUtility.CallServiceAsync<List<Odds>>(url, null, "GET").Result as List<Odds>;
+            return x;
         }
 
         public void Publish()
         {
-            throw new NotImplementedException();
+            string url = baseUrl + "Publish";
+            var x = RestUtility.CallServiceAsync<List<Odds>>(url, null, "GET").Result as List<Odds>;
+            
         }
 
         public void Remove(string name)
         {
-            throw new NotImplementedException();
+            string url = baseUrl + "Remove";
+            var x = RestUtility.CallServiceAsync<List<Odds>>(url, name, "POST").Result as List<Odds>;
         }
 
         public void Subscribe(User user)
@@ -38,7 +46,9 @@ namespace OddsServer
 
         public void Update(Odds input)
         {
-            throw new NotImplementedException();
+            string url = baseUrl + "Update";
+            var x =  RestUtility.CallServiceAsync<string>(url, input, "POST").Result;
+
         }
     }
 }

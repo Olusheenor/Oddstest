@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.AspNet.SignalR;
+using OddsCore;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace OddsServer
@@ -25,7 +26,7 @@ namespace OddsServer
                 
                 .AddSingleton<IDisplayService, DisplayService>()
                 .AddSingleton<IUser, User>()
-                .AddSingleton<IOddService, OddsService>()
+                .AddSingleton<IOddService, OddServiceAdmin>()
                 .BuildServiceProvider();
 
             Console.WriteLine("Hello Admin! Welcome to OddestOdds.com Server");
@@ -62,7 +63,7 @@ namespace OddsServer
                         string oddName = Console.ReadLine();
                         Console.WriteLine("Please enter the odds value and press enter");
                         string oddValue = Console.ReadLine();
-                        _oddService.Add(new OddsCore.Odds()
+                        _oddService.Add(new Odds()
                         {
                             OddName = oddName,
                             OddValue = oddValue,
@@ -81,11 +82,7 @@ namespace OddsServer
                         _displayService.ShowOdds(odds, "admin");
                         break;
                     case "pub":
-
-                        var serviceProvder = new ServiceCollection()
-                            .AddScoped<OddsService>().AddSingleton<IOddService, OddsService>().BuildServiceProvider();
-                        var oddService = serviceProvder.GetService<OddsService>();
-                        oddService.Publish();
+                        _oddService.Publish();
                         break;
 
                     default:

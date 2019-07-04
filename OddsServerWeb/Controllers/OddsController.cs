@@ -23,11 +23,11 @@ namespace OddsServerWeb.Controllers
         }
         // GET api/values
         [HttpGet]
-        [Route("GetOdds")]
+        [Route("LoadOdds")]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _hubContext.Clients.All.SendAsync("LoadOdds", JsonConvert.SerializeObject(_oddService.GetAll()));
-            return Ok();
+            var odds = _oddService.GetAll();
+            return Ok(odds);
         }
 
         // GET api/values/5
@@ -49,17 +49,17 @@ namespace OddsServerWeb.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("Publish")]
         public void Publish()
         {
             _oddService.Publish();
+
+
+            //_hubContext.Clients.All.SendAsync("LoadOdds", JsonConvert.SerializeObject(_oddService.GetAll()));
+            
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+     
     }
 }

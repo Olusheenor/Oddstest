@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿﻿using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using OddsCore;
 using System;
@@ -79,25 +79,19 @@ namespace OddServices
         public void Publish()
         {
 
-            _listOdds.ForEach(x =>
-            {
-                x.IsPublished = true;
-            });
-
-
             foreach (var item in _listOdds)
             {
                 item.IsPublished = true;
             }
 
-            //default observer pattern
+            //default observer pattern call the update method for each user
 
             //foreach( var user in _subScribedUsers)
             //{
             //    user.Update(_listOdds);
             //}
 
-            //Real time notify all users of new odds!!
+            //Real time notify all users of new odds using SignalR!!
 
 
             _hubContext.Clients.All.SendAsync("LoadOdds", "client", JsonConvert.SerializeObject(_listOdds));
